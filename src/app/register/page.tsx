@@ -3,14 +3,14 @@ import InputArea from '@/components/form/InputArea';
 import useLoginSubmit from '@/hooks/useLoginSubmit';
 import { FiLock, FiMail, FiUser } from 'react-icons/fi';
 import { useEffect, useState } from 'react';
-import {app} from '../../lib/firebaseConfig'
+
 import Link from 'next/link';
 import { ToastContainer } from 'react-toastify';
 import Image from 'next/image';
-import { getAuth, signInWithPopup } from 'firebase/auth';
+
 import { useAppDispatch, useStateUseSelector } from '@/redux/hooks';
 import { unsubscribe } from 'diagnostics_channel';
-import { GoogleAuthProvider } from 'firebase/auth/cordova';
+
 import { useRouter } from 'next/navigation';
 import { RootState } from '@/redux/store';
 
@@ -19,19 +19,7 @@ const Register = () => {
   const router = useRouter()
   const user = useStateUseSelector((state:RootState) => state?.auth?.user);
 
- 
 
-const signInwithGoogle = async()=>{
-  const auth = getAuth(app)
-  const provider = new GoogleAuthProvider()
-  try {
-    await signInWithPopup(auth,provider)
-    router.push('/')
-  } catch (error:any) {
-    console.log("Error signing in the Google", error.message);
-    
-  }
-}
   const { handleSubmit, submitHandler, register, errors, loading } = useLoginSubmit();
   const [showResetPassword, setShowResetPassword] = useState<boolean>(false);
 
@@ -128,7 +116,7 @@ const signInwithGoogle = async()=>{
                 </button>
               )}
               <h1>OR</h1>
-              <button onClick={signInwithGoogle}
+              <button 
               className='bg-gray-800 text-white'>
                 Sign in with google
               </button>
