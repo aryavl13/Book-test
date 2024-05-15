@@ -1,0 +1,254 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+.flip-container {
+  perspective: 1000px; /* Adjust as needed */
+}
+
+.flip-container:hover .flipper,
+.flip-container.hover .flipper {
+  transform: rotateY(180deg);
+}
+
+.flip-container,
+.flip-container .front,
+.flip-container .back {
+  width: 100%;
+  height: 100%;
+}
+
+.flipper {
+  transition: 0.6s; /* Adjust the duration of the flip animation */
+  transform-style: preserve-3d;
+  position: relative;
+}
+
+.front,
+.back {
+  backface-visibility: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.front {
+  z-index: 2;
+}
+
+.back {
+  transform: rotateY(180deg);
+}
+
+
+.book-container {
+ 
+  background-color: #f8f8f8; /* Background color of the "pages" */
+  border: 1px solid #ddd; /* Border color */
+  border-radius: 5px; /* Border radius for a softer look */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Box shadow for depth */
+  overflow: hidden; /* Hide overflow to prevent folds from showing outside */
+}
+
+.fold-top-left,
+.fold-top-right {
+  position: absolute;
+  width: 100px; /* Adjust the width of the folded corner */
+  height: 100px; /* Adjust the height of the folded corner */
+  background-color: #fff; /* Color of the folded corner */
+  top: 0;
+}
+
+.fold-top-left {
+  right: 0;
+  clip-path: polygon(0 0, 100% 0, 0 100%);
+}
+
+.fold-top-right {
+  right: 0;
+  clip-path: polygon(100% 0, 100% 100%, 0 100%);
+}
+
+.selection-container {
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+  background-color: white;
+  padding: 1rem;
+}
+
+/* Loader */
+.react-epubjs .lds-ripple {
+    display: inline-block;
+    width: 80px;
+    height: 80px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+  .react-epubjs .lds-ripple div {
+    position: absolute;
+    border: 4px solid #ddd;
+    opacity: 1;
+    border-radius: 50%;
+    animation: lds-ripple 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+  }
+  
+  .react-epubjs .lds-ripple div:nth-child(2) {
+    animation-delay: -0.5s;
+  }
+  
+  @keyframes lds-ripple {
+    0% {
+      top: 36px;
+      left: 36px;
+      width: 0;
+      height: 0;
+      opacity: 1;
+    }
+    100% {
+      top: 0px;
+      left: 0px;
+      width: 72px;
+      height: 72px;
+      opacity: 0;
+    }
+  }
+  
+  /* more */
+  .react-epubjs .more {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    z-index: 2;
+  }
+  
+  .react-epubjs .more .setting {
+    width: 100%;
+    height: 60%;
+    background: #8a8a8ac7;
+  }
+  
+  .react-epubjs .more .cancel {
+    width: 100%;
+    height: 40%;
+  }
+  
+  .react-epubjs .more .info {
+    height: 3rem;
+    background: #f2f2f2;
+    line-height: 3rem;
+  }
+  
+  .react-epubjs .more .info .title {
+    color: #000;
+    text-align: center;
+    font-weight: bold;
+  }
+  
+  .react-epubjs .more .chapters {
+    background-color: #ffffff;
+    z-index: 3;
+    padding: 2rem;
+    height: calc(100% - 3rem);
+    overflow: auto;
+  }
+  
+  .react-epubjs .more .chapters .chapter {
+    padding: 0.6rem;
+    text-decoration: underline;
+    display: table;
+  }
+
+  /* reader */
+  .react-epubjs {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+  }
+  
+  .react-epubjs *,
+  .react-epubjs *:before,
+  .react-epubjs *:after {
+    box-sizing: inherit;
+  }
+  
+  .react-epubjs .reader {
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+  }
+  
+  .react-epubjs .reader.pb-25 {
+    padding-bottom: 25px;
+  }
+
+  /* navigator */
+  .react-epubjs .navigator {
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+  }
+  
+  .react-epubjs .navigator .more-info-area {
+    width: 100%;
+    height: 30%;
+    opacity: 0.3;
+  }
+  
+  .react-epubjs .navigator .next-area {
+    width: 50%;
+    height: 70%;
+    opacity: 0.3;
+    float: right;
+  }
+  
+  .react-epubjs .navigator .prev-area {
+    width: 50%;
+    height: 70%;
+    opacity: 0.3;
+    float: left;
+  }
+  
+  .react-epubjs .navigator .page-number {
+    position: absolute;
+    width: 100%;
+    background: #c0c0c02e;
+    padding: 5px 15px;
+    color: #888;
+    text-align: center;
+    bottom: 0;
+  }
+  #viewer {
+    width: 100%;
+    height: 100%;
+    /* width: 400px;
+    height: 580px; */
+    /* box-shadow: 0 0 4px #ccc; */
+    /* padding: 10px 10px 0px 10px; */
+    margin: 5px auto;
+    background: white;
+  }
+
+
+  @media only screen
+    and (min-device-width : 320px)
+    and (max-device-width : 667px) {
+      #viewer {
+        /* height: 96.5%; */
+      }
+      #viewer iframe {
+        /* pointer-events: none; */
+      }
+      .arrow {
+        position: inherit;
+        display: none;
+      }
+  }
+
+  
