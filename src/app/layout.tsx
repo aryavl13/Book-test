@@ -5,6 +5,7 @@ import Navbar from "@/components/navbar/Navbar";
 import Footer from "@/components/footer/Footer";
 import StoreProvider from "@/components/provider/redux-provider/StoreProvider";
 import { EpubProvider } from "@/context/EpubContext";
+import Head from "next/head";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,7 +20,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en"
+    >
+      <Head>
+          <meta httpEquiv="Content-Security-Policy" content="upgrade-insecure-requests" />
+        </Head>
+
       <body className={inter.className}>
         <StoreProvider>
           <EpubProvider>
